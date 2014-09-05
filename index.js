@@ -25,12 +25,12 @@ var server = http.createServer(function(req, resp) {
     return resp.end('{}');
   }
 
-  if(size) {
+  if (size) {
     var devNull = fs.createWriteStream('/dev/null');
 
     var stream = req.pipe(new Throttle(50 * 1024));
     var bar = new ProgressBar('•'.red + ' :bar '.blue + req.url.green, {
-      'width': 30,
+      'width': 40,
       'total': size
     });
 
@@ -39,7 +39,7 @@ var server = http.createServer(function(req, resp) {
       bar.tick(data.length);
     });
 
-    req.on('end', function () {
+    stream.on('end', function () {
       devNull.close();
       resp.end();
     });
