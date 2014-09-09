@@ -1,6 +1,6 @@
 {
   "name": "thropload",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Throttled http server that streams PUT/POST to /dev/null. for testing http uploads",
   "engines": {
     "node": ">=0.8.0"
