@@ -2,7 +2,12 @@
   "name": "thropload",
   "version": "0.0.1",
   "description": "Throttled http server that streams PUT/POST to /dev/null. for testing http uploads",
-  "main": "index.js",
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "bin": {
+    "thropload": "./index.js"
+  },
   "dependencies": {
     "debug": "2.0.0",
     "progress": "1.1.8",

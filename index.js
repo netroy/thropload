@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 'use strict';
 
 var http = require('http');
@@ -42,7 +44,11 @@ function onRequest (req, resp) {
   }
 }
 
-var server = http.createServer(onRequest);
-server.listen(port, function () {
+function onStarted () {
   debug('server started on - http://0.0.0.0:%s/', port);
-});
+}
+
+var server = http.createServer();
+server.on('request', onRequest);
+server.listen(port, onStarted);
+module.exports = server;
