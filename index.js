@@ -1,22 +1,35 @@
+'use strict';
+
 var http = require('http');
 var fs = require('fs');
 
 var Throttle = require('throttle');
 var ProgressBar = require('progress');
-require('colors');
+var debug = require('debug')('thropload');
+
+var port = 9090;
 
 var server = http.createServer(function(req, resp) {
 
   var method = req.method.toUpperCase();
+  var headers = {
+    'Access-Control-Allow-Credentials': true,
+    'Access-Control-Allow-Headers': 'accept, origin, authorization, content-type',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Origin': req.headers.origin || '*',
+    'Access-Control-Expose-Headers': 'Origin, Content-Type, Accept',
+    'Access-Control-Max-Age': 1728000
+  };
+
+  if ('origin' in req.headers) {
+    for (var key in headers) {
+      resp.setHeader(key, headers[key]);
+    }
+  }
+
   if(method === 'OPTIONS') {
-    resp.writeHead(200, {
-      'Access-Control-Allow-Credentials': true,
-      'Access-Control-Allow-Headers': 'accept, origin, authorization, content-type',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Origin': req.headers.origin || '*',
-      'Access-Control-Expose-Headers': 'Origin, Content-Type, Accept',
-      'Access-Control-Max-Age':1728000
-    });
+    debug('received a CORS request');
+    resp.writeHead(200);
     return resp.end();
   }
 
@@ -29,8 +42,8 @@ var server = http.createServer(function(req, resp) {
     var devNull = fs.createWriteStream('/dev/null');
 
     var stream = req.pipe(new Throttle(50 * 1024));
-    var bar = new ProgressBar('•'.red + ' :bar '.blue + req.url.green, {
-      'width': 40,
+    var bar = new ProgressBar('•' + ' :bar :percent', {
+      'width': 50,
       'total': size
     });
 
@@ -41,12 +54,15 @@ var server = http.createServer(function(req, resp) {
 
     stream.on('end', function () {
       devNull.close();
-      resp.end();
+      resp.end('{}');
     });
   } else {
+    resp.writeHead(204);
     resp.end();
   }
 });
 
-server.listen(9090);
-console.log('http://0.0.0.0:9090/');
+server.listen(port, function () {
+  debug('server started on - http://0.0.0.0:%s/', port);
+});
+

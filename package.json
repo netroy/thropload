@@ -4,15 +4,11 @@
   "description": "Throttled http server that streams PUT/POST to /dev/null. for testing http uploads",
   "main": "index.js",
   "dependencies": {
-    "brake": "~0.1.0",
-    "colors": "~0.6.0-1",
-    "progress": "~0.1.0",
-    "throttle": "~1.0.3"
+    "debug": "2.0.0",
+    "progress": "1.1.8",
+    "throttle": "1.0.3"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/netroy/thropload.git"
