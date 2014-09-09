@@ -1,5 +1,5 @@
 start:
-	DEBUG=thropload node index.js
+	DEBUG=thropload node bin/thropload
 
 watch:
-	DEBUG=thropload nodemon -q index.js
+	DEBUG=thropload nodemon -q bin/thropload

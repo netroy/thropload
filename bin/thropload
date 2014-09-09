@@ -10,7 +10,7 @@ var ProgressBar = require('progress');
 var debug = require('debug')('thropload');
 
 var port = 9090;
-var cors = require('./lib/cors');
+var cors = require('../lib/cors');
 
 function onRequest (req, resp) {
 
