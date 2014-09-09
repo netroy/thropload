@@ -8,36 +8,16 @@ var ProgressBar = require('progress');
 var debug = require('debug')('thropload');
 
 var port = 9090;
-var CorsHeaders = {
-  'Allow-Credentials': true,
-  'Allow-Headers': 'accept, origin, authorization, content-type',
-  'Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-  'Allow-Origin': '*',
-  'Expose-Headers': 'Origin, Content-Type, Accept',
-  'Max-Age': 1728000
-};
+var cors = require('./lib/cors');
 
-var server = http.createServer(function(req, resp) {
-
-  if ('origin' in req.headers) {
-    for (var key in CorsHeaders) {
-      resp.setHeader('Access-Control-' + key, CorsHeaders[key]);
-    }
-  }
+function onRequest (req, resp) {
 
   var method = req.method.toUpperCase();
-  if(method === 'OPTIONS') {
-    debug('received a CORS request');
-    resp.writeHead(200);
-    return resp.end();
-  }
-
   var size = parseInt(req.headers['content-length'], 10);
-  if(!/^(PUT|POST)$/.test(method)) {
-    return resp.end('{}');
-  }
 
-  if (size) {
+  cors(req, resp);
+
+  if (size && /^(PUT|POST)$/.test(method)) {
     var devNull = fs.createWriteStream('/dev/null');
 
     var stream = req.pipe(new Throttle(50 * 1024));
@@ -55,13 +35,14 @@ var server = http.createServer(function(req, resp) {
       devNull.close();
       resp.end('{}');
     });
-  } else {
-    resp.writeHead(204);
+  } else if (method === 'OPTIONS') {
     resp.end();
+  } else {
+    resp.end('{}');
   }
-});
+}
 
+var server = http.createServer(onRequest);
 server.listen(port, function () {
   debug('server started on - http://0.0.0.0:%s/', port);
 });
-
