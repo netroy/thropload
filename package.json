@@ -7,6 +7,7 @@
     "node": ">=16.9",
     "pnpm": ">=8.6"
   },
+  "main": "./dist/index.js",
   "bin": {
     "thropload": "./bin/thropload"
   },
@@ -15,7 +16,15 @@
     "progress": "2.0.3",
     "stream-parser": "0.3.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/node": "18.16.16",
+    "@types/progress": "2.0.5",
+    "typescript": "5.1.6"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "DEBUG=thropload ./bin/thropload"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/netroy/thropload.git"

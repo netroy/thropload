@@ -2,53 +2,12 @@
 
 'use strict';
 
-var http = require('http');
-var fs = require('fs');
 
-var Throttle = require('throttle');
-var ProgressBar = require('progress');
-var debug = require('debug')('thropload');
+const debug = require('debug')('thropload')
+const port = 9090
 
-var port = 9090;
-var cors = require('../lib/cors');
+const { create } = require('..')
 
-function onRequest (req, resp) {
-
-  var method = req.method.toUpperCase();
-  var size = parseInt(req.headers['content-length'], 10);
-
-  cors(req, resp);
-
-  if (size && /^(PUT|POST)$/.test(method)) {
-    var devNull = fs.createWriteStream('/dev/null');
-
-    var stream = req.pipe(new Throttle(50 * 1024));
-    var bar = new ProgressBar('•' + ' :bar :percent', {
-      'width': 50,
-      'total': size
-    });
-
-    stream.pipe(devNull);
-    stream.on('data', function (data) {
-      bar.tick(data.length);
-    });
-
-    stream.on('end', function () {
-      devNull.close();
-      resp.end('{}');
-    });
-  } else if (method === 'OPTIONS') {
-    resp.end();
-  } else {
-    resp.end('{}');
-  }
-}
-
-function onStarted () {
-  debug('server started on - http://0.0.0.0:%s/', port);
-}
-
-var server = http.createServer();
-server.on('request', onRequest);
-server.listen(port, onStarted);
-module.exports = server;
+create().listen(port, () => {
+  debug('server started on - http://0.0.0.0:%s/', port)
+})

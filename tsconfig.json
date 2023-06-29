@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "allowJs": false,
+    "declaration": true,
+    "sourceMap": true,
+    "removeComments": false,
+    "strict": true,
+    "alwaysStrict": true,
+    "incremental": true,
+		"tsBuildInfoFile": "dist/build.tsbuildinfo"
+  },
+  "include": ["src/*.ts"]
+}

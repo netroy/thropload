@@ -15,7 +15,28 @@ dependencies:
     specifier: 0.3.1
     version: 0.3.1
 
+devDependencies:
+  '@types/node':
+    specifier: 18.16.16
+    version: 18.16.16
+  '@types/progress':
+    specifier: 2.0.5
+    version: 2.0.5
+  typescript:
+    specifier: 5.1.6
+    version: 5.1.6
+
 packages:
+
+  /@types/node@18.16.16:
+    resolution: {integrity: sha512-NpaM49IGQQAUlBhHMF82QH80J08os4ZmyF9MkpCzWAGuOHqE4gTEbhzd7L3l5LmWuZ6E0OiC1FweQ4tsiW35+g==}
+    dev: true
+
+  /@types/progress@2.0.5:
+    resolution: {integrity: sha512-ZYYVc/kSMkhH9W/4dNK/sLNra3cnkfT2nJyOAIDY+C2u6w72wa0s1aXAezVtbTsnN8HID1uhXCrLwDE2ZXpplg==}
+    dependencies:
+      '@types/node': 18.16.16
+    dev: true
 
   /debug@2.0.0:
     resolution: {integrity: sha512-jRxFR0Fb657ikmm6IjHY32v/Nqp9Ndcx4LBISXPfpguNaHh5JJnb+x37qalKPTu4fxMFnVBIyEGi72mmvl0BCw==}
@@ -60,3 +81,9 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: false
+
+  /typescript@5.1.6:
+    resolution: {integrity: sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    dev: true

@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/bin/thropload",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "killBehavior": "polite",
+      "outputCapture": "std",
+      "console": "integratedTerminal",
+      "env": {
+        "DEBUG": "thropload"
+      }
+    }
+  ]
+}
