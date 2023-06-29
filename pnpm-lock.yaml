@@ -1,0 +1,62 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  debug:
+    specifier: 4.3.4
+    version: 4.3.4
+  progress:
+    specifier: 2.0.3
+    version: 2.0.3
+  stream-parser:
+    specifier: 0.3.1
+    version: 0.3.1
+
+packages:
+
+  /debug@2.0.0:
+    resolution: {integrity: sha512-jRxFR0Fb657ikmm6IjHY32v/Nqp9Ndcx4LBISXPfpguNaHh5JJnb+x37qalKPTu4fxMFnVBIyEGi72mmvl0BCw==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+    dependencies:
+      ms: 0.6.2
+    dev: false
+
+  /debug@4.3.4:
+    resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+    dependencies:
+      ms: 2.1.2
+    dev: false
+
+  /ms@0.6.2:
+    resolution: {integrity: sha512-/pc3eh7TWorTtbvXg8je4GvrvEqCfH7PA3P7iW01yL2E53FKixzgMBaQi0NOPbMJqY34cBSvR0tZtmlTkdUG4A==}
+    dev: false
+
+  /ms@2.1.2:
+    resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
+    dev: false
+
+  /progress@2.0.3:
+    resolution: {integrity: sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==}
+    engines: {node: '>=0.4.0'}
+    dev: false
+
+  /stream-parser@0.3.1:
+    resolution: {integrity: sha512-bJ/HgKq41nlKvlhccD5kaCr/P+Hu0wPNKPJOH7en+YrJu/9EgqUF+88w5Jb6KNcjOFMhfX4B2asfeAtIGuHObQ==}
+    dependencies:
+      debug: 2.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false

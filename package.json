@@ -2,16 +2,18 @@
   "name": "thropload",
   "version": "1.0.0",
   "description": "Throttled http server that streams PUT/POST to /dev/null. for testing http uploads",
+  "packageManager": "pnpm@8.6.5",
   "engines": {
-    "node": ">=0.8.0"
+    "node": ">=16.9",
+    "pnpm": ">=8.6"
   },
   "bin": {
     "thropload": "./bin/thropload"
   },
   "dependencies": {
-    "debug": "2.0.0",
-    "progress": "1.1.8",
-    "throttle": "1.0.3"
+    "debug": "4.3.4",
+    "progress": "2.0.3",
+    "stream-parser": "0.3.1"
   },
   "devDependencies": {},
   "repository": {
